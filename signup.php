@@ -14,6 +14,9 @@
        //input name="lname" is equal to $lname
        $lname = $_POST['lname'];
        
+       //input name="email" is equal to $email
+       $email = $_POST['email'];
+       
        //input name="username" is equal to $username
        $username = $_POST['username'];
        
@@ -50,11 +53,11 @@
             //if you use stmt your code will be more secure. So we will gonna use it
             
             // Prepare an insert statement
-           $sql = "INSERT INTO usersinfo (fname, lname, username, password) VALUES (?, ?, ?, ?)";
+           $sql = "INSERT INTO usersinfo (fname, lname, email, username, password) VALUES (?, ?, ?, ?, ?)";
             
            if($stmt = mysqli_prepare($link, $sql)){
            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $fname, $lname, $username, $hashpass);    
+            mysqli_stmt_bind_param($stmt, "sssss", $fname, $lname, $email, $username, $hashpass);    
             
              mysqli_stmt_execute($stmt);
              
@@ -142,6 +145,8 @@
             
             <input type="text" name="fname" id="inputEmail" class="form-control" placeholder="Firstname" required="" autofocus="">
             <input type="text" name="lname" id="inputEmail" class="form-control" placeholder="Lastname" required="" autofocus="">
+            
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="">
             
             <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus=""> <span> <?php echo $username_error;  ?> </span>
             
